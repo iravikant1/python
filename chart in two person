@@ -1,0 +1,28 @@
+from graphviz import Digraph
+
+# Create a directed graph
+dot = Digraph(comment='Internal Communication Chart')
+
+# Add team members
+dot.node('A', 'Alice\n(Backend Developer)')
+dot.node('B', 'Bob\n(Frontend Developer)')
+
+# Shared tools / channels
+dot.node('T', 'Task Management\n(Jira/Trello)')
+dot.node('D', 'Documentation\n(Google Docs)')
+dot.node('C', 'Direct Messaging\n(Slack/Teams)')
+dot.node('V', 'Video Call / Standup\n(Zoom/Meet)')
+
+# Define communication flows
+dot.edges(['AC', 'BC'])   # Alice & Bob -> Direct Messaging
+dot.edge('A', 'T', label='Update Tasks')
+dot.edge('B', 'T', label='Update Tasks')
+dot.edge('T', 'D', label='Task Documentation')
+dot.edge('A', 'V', label='Blockers / Sync')
+dot.edge('B', 'V', label='Blockers / Sync')
+dot.edge('A', 'B', label='Code Review')
+dot.edge('B', 'A', label='Code Review')
+
+# Save and render the chart
+dot.render('communication_chart', view=True)  # This creates a PDF and opens it
+print("Communication chart generated as 'communication_chart.pdf'")
