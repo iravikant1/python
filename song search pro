@@ -1,0 +1,31 @@
+import requests
+
+def search_song(query, limit=5):
+    """
+    Search for songs online using Apple's iTunes Search API.
+    """
+    url = "https://itunes.apple.com/search"
+    params = {
+        "term": query,
+        "media": "music",
+        "limit": limit
+    }
+
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['resultCount'] == 0:
+        print("No songs found.")
+        return
+
+    for i, song in enumerate(data['results'], start=1):
+        print(f"\n--- Result {i} ---")
+        print(f"Song : {song.get('trackName')}")
+        print(f"Artist: {song.get('artistName')}")
+        print(f"Album : {song.get('collectionName')}")
+        print(f"Preview URL: {song.get('previewUrl')}")
+
+
+if __name__ == "__main__":
+    query = input("Enter song name or keyword: ")
+    search_song(query)
