@@ -1,0 +1,13 @@
+import random
+import time
+
+def roll_dice():
+    return random.randint(1, 6)
+
+print("🎲 Ludo Dice Roller")
+
+while True:
+    input("Press ENTER to roll the dice...")
+    number = roll_dice()
+    print(f"Dice Result: {number}")
+    time.sleep(0.5)
