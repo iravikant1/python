@@ -1,0 +1,35 @@
+cat("🎮 Welcome to the Last Letter Word Chain Game!\n")
+cat("Type 'exit' to stop the game.\n\n")
+
+# First word
+previous_word <- tolower(readline("Enter the first word: "))
+
+while (TRUE) {
+  
+  # Exit check
+  if (previous_word == "exit") {
+    cat("Game ended. Goodbye!\n")
+    break
+  }
+  
+  # Get last letter
+  last_letter <- substr(previous_word, nchar(previous_word), nchar(previous_word))
+  
+  # Ask for next word
+  prompt <- paste0("Enter a word starting with '", last_letter, "': ")
+  next_word <- tolower(readline(prompt))
+  
+  # Exit check
+  if (next_word == "exit") {
+    cat("Game ended. Goodbye!\n")
+    break
+  }
+  
+  # Validate input
+  if (substr(next_word, 1, 1) == last_letter) {
+    cat("✅ Good job! Word accepted.\n\n")
+    previous_word <- next_word
+  } else {
+    cat("❌ Oops! The word must start with '", last_letter, "'. Try again.\n\n", sep = "")
+  }
+}
