@@ -1,0 +1,27 @@
+print("🎮 Welcome to the Last Letter Word Chain Game!")
+print("Type 'exit' to stop the game.\n")
+
+# Start with any word from the user
+previous_word = input("Enter the first word: ").strip().lower()
+
+while True:
+    if previous_word == "exit":
+        print("Game ended. Goodbye!")
+        break
+
+    last_letter = previous_word[-1]  # get last letter
+
+    # Ask for the next word
+    next_word = input(f"Enter a word starting with '{last_letter}': ").strip().lower()
+
+    # Check if user wants to exit
+    if next_word == "exit":
+        print("Game ended. Goodbye!")
+        break
+
+    # Validate the word
+    if next_word[0] == last_letter:
+        print("✅ Good job! Word accepted.\n")
+        previous_word = next_word
+    else:
+        print(f"❌ Oops! The word must start with '{last_letter}'. Try again.\n")
