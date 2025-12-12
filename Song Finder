@@ -1,0 +1,22 @@
+from fuzzywuzzy import process
+
+bollywood_songs = [
+    "Tum Hi Ho - Aashiqui 2",
+    "Kal Ho Naa Ho - Kal Ho Naa Ho",
+    "Kabira - Yeh Jawaani Hai Deewani",
+    "Raabta - Agent Vinod",
+    "Kesariya - Brahmastra",
+    "Mere Liye Tum Kaafi Ho - Shubh Mangal Zyada Saavdhan",
+    "Raatan Lambiyan - Shershaah",
+    "Channa Mereya - Ae Dil Hai Mushkil",
+    "Tera Ban Jaunga - Kabir Singh",
+    "Ae Dil Hai Mushkil - Ae Dil Hai Mushkil"
+]
+
+query = input("Search: ")
+
+matches = process.extract(query, bollywood_songs, limit=5)
+
+print("\nTop matches:")
+for song, score in matches:
+    print(f"{song}  | score: {score}")
